@@ -5,6 +5,7 @@ import pickle
 import argparse
 import xmltodict
 import json
+import xml.etree.ElementTree as ET
 
 parser = argparse.ArgumentParser()
 parser.add_argument("path")
@@ -17,17 +18,32 @@ else:
     print("The target directory doesn't exist")
     raise SystemExit(1)
 
+library_path=podcast_path+'/iTunes Music Library.xml'
+
+tree = ET.parse(library_path)
+root = tree.getroot()
+main_dict=root.findall('dict')
+for item in list(main_dict[0]):    
+    if item.tag=="dict":
+        tracks_dict=item
+        break
+tracklist=list(tracks_dict.findall('dict'))
+
+print(tracklist[0])
+
 #podcast_path = 'F:\\iTunes'
 
-with open(os.path.join(podcast_path,'iTunes Music Library.xml'),'r', encoding='utf-8') as f:
-    file_pod=f.read()
+# with open(os.path.join(podcast_path,'iTunes Music Library.xml'),'r', encoding='utf-8') as f:
+#     file_pod=f.read()
 
-dict_pod=xmltodict.parse(file_pod)
 
-with open("sample.json", "w") as outfile:   
-    json.dump(dict_pod, outfile)
 
-print('JSON dumped')
+# dict_pod=xmltodict.parse(file_pod)
+
+# with open("sample.json", "w") as outfile:   
+#     json.dump(dict_pod, outfile)
+
+# print('JSON dumped')
 # library_data = BeautifulSoup(xml_file, "xml")    
 
 # podcast_deets=library_data.find_all('dict')
