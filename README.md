@@ -19,5 +19,5 @@ I realized that there was no easy way to extract the RSS feeds from your podcast
   ```pip install -r requirements.txt```
 6. Find the path to your iTunes folder. By default, on Windows, it is installed at <b>"C:\Users\<user>\Music\iTunes" </b>
 7. Run this code: <br />
-  ```python3 podcast.py path of the iTunes folder as identified in step 5```
+  ```python3 podcast.py <path of the iTunes folder as identified in step 5>```
 
