@@ -20,4 +20,10 @@ I realized that there was no easy way to extract the RSS feeds from your podcast
 6. Find the path to your iTunes folder. By default, on Windows, it is installed at <b>"C:\Users\<user>\Music\iTunes" </b>
 7. Run this code: <br />
   ```python3 podcast.py <path of the iTunes folder as identified in step 5>```
+8. The output files are as follows:
+    1. A pickle file (podcast_feed.pkl) (if you want to load the dictionary { podcast_name : rss_feed} for further manipulation in python
+    2. A text file (error_podcasts): A text file that contains the names of podcasts whose RSS feeds could not be identified
+    3. A text file (rss_feeds): A text file that contains the name of podcasts and the RSS URL for each podcast
+
+A sample output file is available in the <a href="https://github.com/SwamiKannan/Podcast-Feed-Extractor/tree/main/sample_output"> sample_outputs </a> folder
 
