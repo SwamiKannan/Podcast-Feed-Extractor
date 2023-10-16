@@ -7,6 +7,13 @@ podcast_path = 'F:/iTunes'
 
 
 def get_names(podcast_path: str) -> list:
+    '''
+    Extracts the names of all the podcasts as per the "Album" name in the iTunes Music Library.xml file.
+    Args:
+        podcast_path: The path to the iTunes folder
+    Returns:
+        final_content (list): A list of all the podcasts that are/were not part of iTunes University (which has been stopped)
+    '''
     library_path = podcast_path+'/iTunes Music Library.xml'
     tree = ET.parse(library_path)
     root = tree.getroot()
@@ -47,6 +54,14 @@ def get_names(podcast_path: str) -> list:
 
 
 def get_feed(podcast_name: str):
+    '''
+    Takes the podcast name, queries the iTunes server and returns the RSS feed address if available
+    Args:
+        podcast_name: Name of the podcast as per the iTunes Music Library.xml file
+    Returns:
+        received (bool): A flag that states whether the rss feed was retrieved or not
+        feed (str): the RSS feed url if the received flag is True else the podcast_name itself
+    '''
     received = False
     title = podcast_name.replace(" ", "+")
     link = 'https://itunes.apple.com/search?media=podcast&term=' + title
@@ -56,10 +71,8 @@ def get_feed(podcast_name: str):
             feed = response.json()['results'][0]['feedUrl']
             received = True
         except IndexError:
-            # print(f'No data received for {podcast_name}')
             feed = podcast_name
         except KeyError:
-            # print(f'No feed received for {podcast_name}')
             feed = podcast_name
     else:
         feed = podcast_name
@@ -67,6 +80,22 @@ def get_feed(podcast_name: str):
 
 
 def get_all_feeds(podcast_path: str, output_dir_avail: bool):
+    '''
+    Calls get_names() to get the list of all podcast names
+    For each podcast name, retrieves the url/podcast_name and status of retrieval
+        if retrieval is a success, adds the data to a dictionary as {name of podcast: rss feed url}
+        else appends podcast name to a list
+    Writes the following to disk (if output folder is available, write files to output folder else writes to the main folder)
+        podcast_feed.pkl: A pickle file that writes the dictionary created for successful retrieval
+        error_podcasts: list of podcasts whose RSS file could not be extracted
+        rss_feeds: Clear text version of podcast_feed.pkl
+    Args:
+        podcast_path: Path of the iTunes folder
+        output_dir_available: if the 'output' folder has been created / exists or not
+    Returns:
+        primary_dict (dict): {name of podcast: rss feed url}
+        feed (str): 
+    '''
     primary_dict = {}
     error_feed = []
     pod_names = get_names(podcast_path)
