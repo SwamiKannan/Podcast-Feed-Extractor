@@ -3,9 +3,8 @@ import time
 import requests
 import pickle
 import argparse
-import xmltodict
-import json
-import xml.etree.ElementTree as ET
+from utils import get_all_feeds
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("path")
@@ -13,38 +12,39 @@ parser.add_argument("path")
 args = parser.parse_args()
 
 if os.path.exists(args.path):
-    podcast_path=args.path
+    podcast_path = args.path
 else:
     print("The target directory doesn't exist")
     raise SystemExit(1)
 
-library_path=podcast_path+'/iTunes Music Library.xml'
 
-tree = ET.parse(library_path)
-root = tree.getroot()
-main_dict=root.findall('dict')
-for item in list(main_dict[0]):    
-    if item.tag=="dict":
-        tracks_dict=item
-        break
-tracklist=list(tracks_dict.findall('dict'))
+def __main__():
+    get_all_feeds(podcast_path)
 
-print(tracklist[0])
+# tree = ET.parse(library_path)
+# root = tree.getroot()
+# main_dict=root.findall('dict')
+# for item in list(main_dict[0]):
+#     if item.tag=="dict":
+#         tracks_dict=item
+#         break
+# tracklist=list(tracks_dict.findall('dict'))
 
-#podcast_path = 'F:\\iTunes'
+# print(tracklist[0])
+
+# podcast_path = 'F:\\iTunes'
 
 # with open(os.path.join(podcast_path,'iTunes Music Library.xml'),'r', encoding='utf-8') as f:
 #     file_pod=f.read()
 
 
-
 # dict_pod=xmltodict.parse(file_pod)
 
-# with open("sample.json", "w") as outfile:   
+# with open("sample.json", "w") as outfile:
 #     json.dump(dict_pod, outfile)
 
 # print('JSON dumped')
-# library_data = BeautifulSoup(xml_file, "xml")    
+# library_data = BeautifulSoup(xml_file, "xml")
 
 # podcast_deets=library_data.find_all('dict')
 # podcast_deets.
