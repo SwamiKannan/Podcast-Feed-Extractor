@@ -12,7 +12,12 @@ I realized that there was no easy way to extract the RSS feeds from your podcast
 
 1. Download this repo to your disk.
 2. Open your command prompt and navigate to this repo
-3. Enter the repo:
+3. Enter the repo: <br />
    ```cd Podcast-Feed-Extractor```
-4. 
+   <br />
+5. Install the requirements: <br />
+  ```pip install -r requirements.txt```
+6. Find the path to your iTunes folder. By default, on Windows, it is installed at <b>"C:\Users\<user>\Music\iTunes" </b>
+7. Run this code: <br />
+  ```python3 podcast.py path of the iTunes folder as identified in step 5```
 
