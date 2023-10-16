@@ -55,10 +55,10 @@ def get_feed(podcast_name: str):
             feed = response.json()['results'][0]['feedUrl']
             received = True
         except IndexError:
-            print(f'No data received for {podcast_name}')
+            # print(f'No data received for {podcast_name}')
             feed = podcast_name
         except KeyError:
-            print(f'No feed received for {podcast_name}')
+            # print(f'No feed received for {podcast_name}')
             feed = podcast_name
     else:
         feed = podcast_name
@@ -73,11 +73,11 @@ def get_all_feeds(podcast_path: str):
         url_feed, received_flag = get_feed(name)
         if received_flag:
             primary_dict[name] = url_feed
-    else:
-        error_feed.append(url_feed)
-    print('\n\nThe RSS feeds are as follows:')
-    for key, value in primary_dict.items():
-        print(f'{key}:\t{value}')
+        else:
+            error_feed.append(url_feed)
+    # print('\n\nThe RSS feeds are as follows:')
+    # for key, value in primary_dict.items():
+    #     print(f'{key}:\t{value}')
     print('\n\nThe following podcasts did not have any RSS feed')
     for error in error_feed:
         print(error)
