@@ -1,7 +1,4 @@
 import os
-import time
-import requests
-import pickle
 import argparse
 from utils import get_all_feeds
 
