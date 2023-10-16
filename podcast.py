@@ -16,7 +16,14 @@ else:
 
 
 def __main__():
-    get_all_feeds(podcast_path)
+    podcast_feeds = get_all_feeds(podcast_path)
+    for i, (k, v) in enumerate(podcast_feeds.items()):
+        print(f'{i}.\t{k}:{v}')
+
+
+if __name__ == "__main__":
+    __main__()
+
 
 # tree = ET.parse(library_path)
 # root = tree.getroot()
