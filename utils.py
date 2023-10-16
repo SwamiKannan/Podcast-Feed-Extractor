@@ -85,4 +85,10 @@ def get_all_feeds(podcast_path: str):
         pickle.dump(primary_dict, f, pickle.HIGHEST_PROTOCOL)
     with open('error_podcasts', 'w') as f:
         f.write('\n'.join(error_feed))
+    rss_list = []
+    for k, v in primary_dict.items():
+        rss_list.append(f'{k}:\t{v}')
+    with open('rss_feeds', 'w') as f:
+        f.write('\n'.join(rss_list))
+
     return primary_dict
