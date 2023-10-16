@@ -25,5 +25,14 @@ I realized that there was no easy way to extract the RSS feeds from your podcast
     2. A text file (error_podcasts): A text file that contains the names of podcasts whose RSS feeds could not be identified
     3. A text file (rss_feeds): A text file that contains the name of podcasts and the RSS URL for each podcast
 
-A sample output file is available in the <a href="https://github.com/SwamiKannan/Podcast-Feed-Extractor/tree/main/sample_output"> sample_outputs </a> folder
-
+Sample output files are available in the <a href="https://github.com/SwamiKannan/Podcast-Feed-Extractor/tree/main/sample_output"> sample_outputs </a> folder
+## Screenshots from command window
+1. List of podcasts in the iTunes library
+<img src="https://github.com/SwamiKannan/Podcast-Feed-Extractor/blob/main/sample_output/screenshots/podcast_list.png" align="center">
+<br>
+2. List of podcasts whose RSS feeds could not be extracted
+<img src="https://github.com/SwamiKannan/Podcast-Feed-Extractor/blob/main/sample_output/screenshots/Errors_list.png" align="center">
+<br>
+3. List of podcasts with the url of the RSS feeds
+<img src="https://github.com/SwamiKannan/Podcast-Feed-Extractor/blob/main/sample_output/screenshots/RSS-feeds.png" align="center">
+<br>
