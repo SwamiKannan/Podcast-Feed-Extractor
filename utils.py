@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import requests
 import pickle
+import os
 
 podcast_path = 'F:/iTunes'
 
@@ -65,7 +66,7 @@ def get_feed(podcast_name: str):
     return feed, received
 
 
-def get_all_feeds(podcast_path: str):
+def get_all_feeds(podcast_path: str, output_dir_avail: bool):
     primary_dict = {}
     error_feed = []
     pod_names = get_names(podcast_path)
@@ -81,14 +82,15 @@ def get_all_feeds(podcast_path: str):
     print('\n\nThe following podcasts did not have any RSS feed')
     for error in error_feed:
         print(error)
-    with open('podcast_feed.pkl', 'wb') as f:
+    path = os.path.join('output') if output_dir_avail else os.getcwd()
+    with open(os.path.join(path, 'podcast_feed.pkl'), 'wb') as f:
         pickle.dump(primary_dict, f, pickle.HIGHEST_PROTOCOL)
-    with open('error_podcasts', 'w') as f:
+    with open(os.path.join(path, 'error_podcasts'), 'w') as f:
         f.write('\n'.join(error_feed))
     rss_list = []
     for k, v in primary_dict.items():
         rss_list.append(f'{k}:\t{v}')
-    with open('rss_feeds', 'w') as f:
+    with open(os.path.join(path, 'rss_feeds'), 'w') as f:
         f.write('\n'.join(rss_list))
 
     return primary_dict
